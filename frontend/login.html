@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlowAI — Sign In</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary-color: #D4B67A;
+            --primary-dark: #C5A059;
+            --secondary-color: #E9ECEF;
+            --background: #F8F9FA;
+            --surface: #FFFFFF;
+            --text-primary: #0A192F;
+            --text-secondary: #495057;
+            --text-muted: #6C757D;
+            --border-color: rgba(197, 160, 89, 0.25);
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-xl: 20px;
+            --shadow-md: 0 4px 16px rgba(10,25,47,0.08);
+            --shadow-lg: 0 8px 32px rgba(10,25,47,0.12);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--background);
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+        }
+
+        /* ─── LEFT PANEL ─── */
+        .left-panel {
+            width: 55%;
+            background: linear-gradient(135deg, #0A192F 0%, #112240 50%, #0A192F 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        /* Animated blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            animation: blobFloat 8s ease-in-out infinite;
+        }
+        .blob-1 {
+            width: 400px; height: 400px;
+            background: #D4B67A;
+            top: -100px; left: -100px;
+            animation-delay: 0s;
+        }
+        .blob-2 {
+            width: 300px; height: 300px;
+            background: #C5A059;
+            bottom: -80px; right: -80px;
+            animation-delay: -3s;
+        }
+        .blob-3 {
+            width: 200px; height: 200px;
+            background: #D4B67A;
+            bottom: 30%; left: 10%;
+            animation-delay: -5s;
+            opacity: 0.1;
+        }
+        @keyframes blobFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(20px, -20px) scale(1.05); }
+            66% { transform: translate(-15px, 15px) scale(0.95); }
+        }
+
+        /* Floating particles */
+        .particles { position: absolute; inset: 0; pointer-events: none; }
+        .particle {
+            position: absolute;
+            width: 4px; height: 4px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleRise linear infinite;
+        }
+        @keyframes particleRise {
+            0% { opacity: 0; transform: translateY(0) scale(0); }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.2; }
+            100% { opacity: 0; transform: translateY(-500px) scale(1.5); }
+        }
+
+        .left-content { position: relative; z-index: 2; text-align: center; max-width: 420px; }
+
+        .left-logo {
+            display: flex; align-items: center; gap: 12px;
+            justify-content: center; margin-bottom: 48px;
+        }
+        .logo-icon {
+            width: 48px; height: 48px; border-radius: 14px;
+            background: linear-gradient(135deg, #D4B67A, #C5A059);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 8px 24px rgba(197, 160, 89, 0.4);
+        }
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: 28px; font-weight: 700; color: white;
+        }
+        .logo-text span { color: #D4B67A; }
+
+        .left-headline {
+            font-family: var(--font-display);
+            font-size: 42px; font-weight: 700;
+            color: white; line-height: 1.2; margin-bottom: 20px;
+        }
+        .left-headline .gradient-word {
+            background: linear-gradient(135deg, #D4B67A, #C5A059);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .left-sub {
+            font-size: 16px; color: rgba(255,255,255,0.55);
+            line-height: 1.8; margin-bottom: 48px; font-weight: 300;
+        }
+
+        /* Feature pills */
+        .feature-pills { display: flex; flex-direction: column; gap: 14px; }
+        .pill {
+            display: flex; align-items: center; gap: 14px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 100px; padding: 12px 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        .pill:hover {
+            background: rgba(212, 182, 122, 0.15);
+            border-color: rgba(212, 182, 122, 0.4);
+            transform: translateX(6px);
+        }
+        .pill-icon {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: linear-gradient(135deg, #D4B67A, #C5A059);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 15px; flex-shrink: 0;
+        }
+        .pill-text { font-size: 14px; color: rgba(255,255,255,0.8); font-weight: 400; }
+
+        /* Scan card floating */
+        .floating-card {
+            position: absolute; bottom: 40px; right: -20px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 20px; padding: 16px 20px;
+            backdrop-filter: blur(20px);
+            display: flex; align-items: center; gap: 12px;
+            animation: cardFloat 4s ease-in-out infinite;
+            z-index: 3;
+        }
+        .floating-card-2 {
+            bottom: auto; top: 80px; left: -20px;
+            animation-delay: -2s;
+        }
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .card-dot {
+            width: 36px; height: 36px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 18px;
+        }
+        .card-dot.teal { background: rgba(212, 182, 122, 0.25); }
+        .card-dot.pink { background: rgba(197, 160, 89, 0.2); }
+        .card-info { display: flex; flex-direction: column; }
+        .card-label { font-size: 11px; color: rgba(255,255,255,0.5); }
+        .card-value { font-size: 14px; font-weight: 600; color: white; }
+
+        /* ─── RIGHT PANEL ─── */
+        .right-panel {
+            width: 45%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 60px 40px;
+            background: var(--surface);
+            position: relative;
+            overflow-y: auto;
+            min-height: 100vh;
+            border-left: 1px solid rgba(197, 160, 89, 0.15);
+        }
+
+        .right-logo {
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 40px;
+        }
+        .right-logo-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            background: linear-gradient(135deg, #D4B67A, #C5A059);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px;
+        }
+        .right-logo-text {
+            font-family: var(--font-display);
+            font-size: 22px; font-weight: 700; color: var(--text-primary);
+        }
+        .right-logo-text span { color: #C5A059; }
+
+        .auth-box { width: 100%; max-width: 420px; padding-bottom: 40px; }
+
+        /* Tab switcher */
+        .auth-tabs {
+            display: flex; background: var(--background);
+            border-radius: 14px; padding: 5px;
+            margin-bottom: 36px; position: relative;
+        }
+        .auth-tab {
+            flex: 1; padding: 11px; text-align: center;
+            font-size: 14px; font-weight: 500; color: var(--text-muted);
+            background: transparent; border: none; cursor: pointer;
+            border-radius: 10px; transition: all 0.3s; z-index: 1;
+            position: relative; font-family: var(--font-body);
+        }
+        .auth-tab.active { color: var(--text-primary); font-weight: 600; }
+        .tab-slider {
+            position: absolute; top: 5px; left: 5px;
+            width: calc(50% - 5px); height: calc(100% - 10px);
+            background: white; border-radius: 10px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 0;
+        }
+        .tab-slider.signup { transform: translateX(calc(100% + 0px)); }
+
+        /* Form header */
+        .form-header { margin-bottom: 32px; }
+        .form-title {
+            font-family: var(--font-display);
+            font-size: 30px; font-weight: 700;
+            color: var(--text-primary); margin-bottom: 8px;
+            font-style: italic;
+        }
+        .form-subtitle { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+        /* Social buttons — hidden */
+        .social-btns { display: none; }
+
+        /* Divider — hidden */
+        .divider { display: none; }
+
+        /* Form panels */
+        .form-panel { display: none; }
+        .form-panel.active { display: block; }
+
+        /* Input groups */
+        .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .input-group { margin-bottom: 18px; }
+        .input-label {
+            display: block; font-size: 12px; font-weight: 600;
+            color: var(--text-secondary); margin-bottom: 8px;
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        .input-wrap { position: relative; }
+        .input-field {
+            width: 100%; padding: 13px 16px 13px 44px;
+            border: 1.5px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 14px; font-family: var(--font-body);
+            color: var(--text-primary); background: var(--background);
+            outline: none; transition: all 0.3s;
+        }
+        .input-field:focus {
+            border-color: var(--primary-color);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(212, 182, 122, 0.12);
+        }
+        .input-field.error { border-color: #FF5630; }
+        .input-field.error:focus { box-shadow: 0 0 0 4px rgba(255, 86, 48, 0.1); }
+        .input-field.success { border-color: #36B37E; }
+
+        .input-icon {
+            position: absolute; left: 14px; top: 50%;
+            transform: translateY(-50%); font-size: 16px;
+            pointer-events: none; user-select: none;
+        }
+        .input-eye {
+            position: absolute; right: 14px; top: 50%;
+            transform: translateY(-50%); font-size: 16px;
+            cursor: pointer; user-select: none; opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+        .input-eye:hover { opacity: 1; }
+
+        .input-hint { font-size: 11px; color: var(--text-muted); margin-top: 5px; }
+        .input-error { font-size: 11px; color: #FF5630; margin-top: 5px; display: none; }
+
+        /* Password strength */
+        .strength-bar {
+            display: flex; gap: 4px; margin-top: 8px;
+        }
+        .strength-segment {
+            flex: 1; height: 3px; border-radius: 2px;
+            background: var(--border-color); transition: background 0.3s;
+        }
+        .strength-segment.weak { background: #FF5630; }
+        .strength-segment.medium { background: #FFAB00; }
+        .strength-segment.strong { background: #36B37E; }
+        .strength-text { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+        /* Terms checkbox */
+        .checkbox-group {
+            display: flex; align-items: flex-start; gap: 10px;
+            margin-bottom: 24px;
+        }
+        .checkbox-custom {
+            width: 18px; height: 18px; border-radius: 5px;
+            border: 1.5px solid var(--border-color);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; flex-shrink: 0; margin-top: 1px;
+            transition: all 0.2s;
+        }
+        .checkbox-custom.checked {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-color: var(--primary-color);
+        }
+        .checkbox-label { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+        .checkbox-label a { color: var(--primary-dark); text-decoration: none; }
+        .checkbox-label a:hover { text-decoration: underline; }
+
+        /* Remember me row */
+        .form-row {
+            display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 24px;
+        }
+        .remember-wrap { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+        .remember-label { font-size: 13px; color: var(--text-secondary); }
+        .forgot-link {
+            font-size: 13px; color: var(--primary-dark);
+            text-decoration: none; font-weight: 500;
+            transition: color 0.2s;
+        }
+        .forgot-link:hover { color: var(--text-primary); }
+
+        /* Submit button */
+        .submit-btn {
+            width: 100%; padding: 15px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: #0A192F; border: none; border-radius: var(--radius-md);
+            font-size: 15px; font-weight: 600; font-family: var(--font-display);
+            cursor: pointer; transition: all 0.35s; letter-spacing: 0.02em;
+            box-shadow: 0 8px 24px rgba(197, 160, 89, 0.35);
+            position: relative; overflow: hidden;
+        }
+        .submit-btn::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 40px rgba(197, 160, 89, 0.45);
+        }
+        .submit-btn:hover::before { opacity: 1; }
+        .submit-btn:active { transform: translateY(0); }
+        .submit-btn.loading {
+            pointer-events: none; opacity: 0.8;
+        }
+
+        .btn-inner { display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-spinner {
+            width: 18px; height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white; border-radius: 50%;
+            animation: spin 0.7s linear infinite; display: none;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Switch link */
+        .switch-text {
+            text-align: center; margin-top: 24px;
+            font-size: 13px; color: var(--text-secondary);
+        }
+        .switch-link {
+            color: var(--primary-dark); font-weight: 600;
+            cursor: pointer; text-decoration: none; transition: color 0.2s;
+        }
+        .switch-link:hover { color: var(--text-primary); }
+
+        /* Success state */
+        .success-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(248, 250, 251, 0.95);
+            z-index: 100; align-items: center; justify-content: center;
+            flex-direction: column; gap: 20px;
+        }
+        .success-overlay.show { display: flex; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .success-icon {
+            width: 80px; height: 80px; border-radius: 50%;
+            background: linear-gradient(135deg, #D4B67A, #C5A059);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 36px;
+            box-shadow: 0 16px 48px rgba(197, 160, 89, 0.4);
+            animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .success-title {
+            font-family: var(--font-display); font-size: 28px;
+            font-weight: 700; color: var(--text-primary);
+        }
+        .success-sub { font-size: 15px; color: var(--text-secondary); }
+        .success-redirect {
+            font-size: 13px; color: var(--text-muted);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .redirect-dot {
+            width: 6px; height: 6px; background: #D4B67A;
+            border-radius: 50%; animation: blinkDot 1s infinite;
+        }
+        @keyframes blinkDot { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .left-panel { display: none; }
+            .right-panel { width: 100%; }
+        }
+        @media (max-width: 480px) {
+            .right-panel { padding: 24px; }
+            .input-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- SUCCESS OVERLAY -->
+<div class="success-overlay" id="success-overlay">
+    <div class="success-icon">✨</div>
+    <div class="success-title" id="success-title">Welcome to GlowAI!</div>
+    <div class="success-sub" id="success-sub">Your account has been created successfully.</div>
+    <div class="success-redirect">
+        <div class="redirect-dot"></div>
+        <span>Redirecting to your dashboard...</span>
+    </div>
+</div>
+
+<!-- LEFT PANEL -->
+<div class="left-panel">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="particles" id="particles"></div>
+
+    <div class="left-content">
+        <div class="left-logo">
+            <div class="logo-icon">✨</div>
+            <div class="logo-text">Glow<span>AI</span></div>
+        </div>
+
+        <h1 class="left-headline">
+            Your Skin,<br>
+            <span class="gradient-word">Understood.</span>
+        </h1>
+
+        <p class="left-sub">
+            AI-powered skin analysis that actually looks at your photo
+            and gives you a personalised diagnosis and skincare routine — for free.
+        </p>
+
+        <div class="feature-pills">
+            <div class="pill">
+                <div class="pill-icon">🔍</div>
+                <span class="pill-text">Real AI vision — analyses your actual photo</span>
+            </div>
+            <div class="pill">
+                <div class="pill-icon">🌿</div>
+                <span class="pill-text">Personalised morning & evening routines</span>
+            </div>
+            <div class="pill">
+                <div class="pill-icon">💬</div>
+                <span class="pill-text">GlowBot answers any skincare question</span>
+            </div>
+            <div class="pill">
+                <div class="pill-icon">🔒</div>
+                <span class="pill-text">Your data is secure and never shared</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating cards -->
+    <div class="floating-card">
+        <div class="card-dot teal">🤖</div>
+        <div class="card-info">
+            <span class="card-label">AI Confidence</span>
+            <span class="card-value">90% Accurate</span>
+        </div>
+    </div>
+    <div class="floating-card floating-card-2">
+        <div class="card-dot pink">🌟</div>
+        <div class="card-info">
+            <span class="card-label">Skin Score</span>
+            <span class="card-value">Analysed ✓</span>
+        </div>
+    </div>
+</div>
+
+<!-- RIGHT PANEL -->
+<div class="right-panel">
+    <div class="auth-box">
+        <div class="right-logo">
+            <div class="right-logo-icon">✨</div>
+            <div class="right-logo-text">Glow<span>AI</span></div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="auth-tabs">
+            <div class="tab-slider" id="tab-slider"></div>
+            <button class="auth-tab active" id="tab-signin" onclick="switchTab('signin')">Sign In</button>
+            <button class="auth-tab" id="tab-signup" onclick="switchTab('signup')">Create Account</button>
+        </div>
+
+        <!-- ═══ SIGN IN FORM ═══ -->
+        <div class="form-panel active" id="panel-signin">
+            <div class="form-header">
+                <h2 class="form-title">Welcome back 👋</h2>
+                <p class="form-subtitle">Sign in to access your skin analysis history and GlowBot.</p>
+            </div>
+
+            <!-- Social -->
+            <div class="social-btns">
+                <button class="social-btn" onclick="socialLogin('Google')">
+                    <span class="social-icon">🌐</span> Google
+                </button>
+                <button class="social-btn" onclick="socialLogin('GitHub')">
+                    <span class="social-icon">⚡</span> GitHub
+                </button>
+            </div>
+
+            <div class="divider">
+                <div class="divider-line"></div>
+                <span class="divider-text">or continue with email</span>
+                <div class="divider-line"></div>
+            </div>
+
+            <form id="signin-form" onsubmit="handleSignIn(event)" novalidate>
+                <div class="input-group">
+                    <label class="input-label">Email Address</label>
+                    <div class="input-wrap">
+                        <span class="input-icon">📧</span>
+                        <input type="email" class="input-field" id="signin-email"
+                            placeholder="you@example.com" autocomplete="email">
+                    </div>
+                    <div class="input-error" id="signin-email-error">Please enter a valid email.</div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Password</label>
+                    <div class="input-wrap">
+                        <span class="input-icon">🔑</span>
+                        <input type="password" class="input-field" id="signin-password"
+                            placeholder="Enter your password" autocomplete="current-password">
+                        <span class="input-eye" onclick="togglePassword('signin-password', this)">👁️</span>
+                    </div>
+                    <div class="input-error" id="signin-password-error">Password is required.</div>
+                </div>
+
+                <div class="form-row">
+                    <div class="remember-wrap" onclick="toggleRemember()">
+                        <div class="checkbox-custom" id="remember-check"></div>
+                        <span class="remember-label">Remember me</span>
+                    </div>
+                    <a href="#" class="forgot-link" onclick="showForgot()">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="submit-btn" id="signin-btn">
+                    <div class="btn-inner">
+                        <div class="btn-spinner" id="signin-spinner"></div>
+                        <span id="signin-btn-text">Sign In to GlowAI</span>
+                    </div>
+                </button>
+            </form>
+
+            <div class="switch-text">
+                Don't have an account?
+                <span class="switch-link" onclick="switchTab('signup')">Create one free →</span>
+            </div>
+        </div>
+
+        <!-- ═══ SIGN UP FORM ═══ -->
+        <div class="form-panel" id="panel-signup">
+            <div class="form-header">
+                <h2 class="form-title">Start your glow journey ✨</h2>
+                <p class="form-subtitle">Create your free account and get your first AI skin analysis.</p>
+            </div>
+
+            <!-- Social -->
+            <div class="social-btns">
+                <button class="social-btn" onclick="socialLogin('Google')">
+                    <span class="social-icon">🌐</span> Google
+                </button>
+                <button class="social-btn" onclick="socialLogin('GitHub')">
+                    <span class="social-icon">⚡</span> GitHub
+                </button>
+            </div>
+
+            <div class="divider">
+                <div class="divider-line"></div>
+                <span class="divider-text">or sign up with email</span>
+                <div class="divider-line"></div>
+            </div>
+
+            <form id="signup-form" onsubmit="handleSignUp(event)" novalidate>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="input-label">First Name</label>
+                        <div class="input-wrap">
+                            <span class="input-icon">👤</span>
+                            <input type="text" class="input-field" id="signup-fname"
+                                placeholder="Aria" autocomplete="given-name">
+                        </div>
+                        <div class="input-error" id="fname-error">Required.</div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Last Name</label>
+                        <div class="input-wrap">
+                            <span class="input-icon">👤</span>
+                            <input type="text" class="input-field" id="signup-lname"
+                                placeholder="Sharma" autocomplete="family-name">
+                        </div>
+                        <div class="input-error" id="lname-error">Required.</div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Email Address</label>
+                    <div class="input-wrap">
+                        <span class="input-icon">📧</span>
+                        <input type="email" class="input-field" id="signup-email"
+                            placeholder="you@example.com" autocomplete="email"
+                            oninput="validateEmailLive(this)">
+                    </div>
+                    <div class="input-error" id="signup-email-error">Please enter a valid email.</div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Password</label>
+                    <div class="input-wrap">
+                        <span class="input-icon">🔑</span>
+                        <input type="password" class="input-field" id="signup-password"
+                            placeholder="Create a strong password"
+                            autocomplete="new-password"
+                            oninput="updateStrength(this.value)">
+                        <span class="input-eye" onclick="togglePassword('signup-password', this)">👁️</span>
+                    </div>
+                    <div class="strength-bar">
+                        <div class="strength-segment" id="str-1"></div>
+                        <div class="strength-segment" id="str-2"></div>
+                        <div class="strength-segment" id="str-3"></div>
+                        <div class="strength-segment" id="str-4"></div>
+                    </div>
+                    <div class="strength-text" id="strength-text">Enter a password</div>
+                    <div class="input-error" id="signup-password-error">Min 8 characters required.</div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Confirm Password</label>
+                    <div class="input-wrap">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" class="input-field" id="signup-confirm"
+                            placeholder="Repeat your password"
+                            autocomplete="new-password">
+                        <span class="input-eye" onclick="togglePassword('signup-confirm', this)">👁️</span>
+                    </div>
+                    <div class="input-error" id="confirm-error">Passwords do not match.</div>
+                </div>
+
+                <div class="checkbox-group">
+                    <div class="checkbox-custom" id="terms-check" onclick="toggleTerms()"></div>
+                    <label class="checkbox-label">
+                        I agree to the <a href="#">Terms of Service</a> and
+                        <a href="#">Privacy Policy</a>. I understand this app
+                        is for informational purposes only.
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn" id="signup-btn">
+                    <div class="btn-inner">
+                        <div class="btn-spinner" id="signup-spinner"></div>
+                        <span id="signup-btn-text">Create Free Account</span>
+                    </div>
+                </button>
+            </form>
+
+            <div class="switch-text">
+                Already have an account?
+                <span class="switch-link" onclick="switchTab('signin')">Sign in →</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+// ══════════════════════════════════════
+// TAB SWITCHING
+// ══════════════════════════════════════
+let currentTab = 'signin';
+let termsChecked = false;
+let rememberChecked = false;
+
+function switchTab(tab) {
+    currentTab = tab;
+    const slider = document.getElementById('tab-slider');
+    const signinTab = document.getElementById('tab-signin');
+    const signupTab = document.getElementById('tab-signup');
+    const signinPanel = document.getElementById('panel-signin');
+    const signupPanel = document.getElementById('panel-signup');
+
+    if (tab === 'signin') {
+        slider.classList.remove('signup');
+        signinTab.classList.add('active');
+        signupTab.classList.remove('active');
+        signinPanel.classList.add('active');
+        signupPanel.classList.remove('active');
+    } else {
+        slider.classList.add('signup');
+        signupTab.classList.add('active');
+        signinTab.classList.remove('active');
+        signupPanel.classList.add('active');
+        signinPanel.classList.remove('active');
+    }
+}
+
+// ══════════════════════════════════════
+// PASSWORD TOGGLE
+// ══════════════════════════════════════
+function togglePassword(id, eyeEl) {
+    const input = document.getElementById(id);
+    if (input.type === 'password') {
+        input.type = 'text';
+        eyeEl.textContent = '🙈';
+    } else {
+        input.type = 'password';
+        eyeEl.textContent = '👁️';
+    }
+}
+
+// ══════════════════════════════════════
+// PASSWORD STRENGTH
+// ══════════════════════════════════════
+function updateStrength(password) {
+    let score = 0;
+    if (password.length >= 8) score++;
+    if (/[A-Z]/.test(password)) score++;
+    if (/[0-9]/.test(password)) score++;
+    if (/[^A-Za-z0-9]/.test(password)) score++;
+
+    const segments = ['str-1','str-2','str-3','str-4'];
+    const labels = ['','Weak','Medium','Strong','Very Strong'];
+    const classes = ['','weak','medium','strong','strong'];
+
+    segments.forEach((id, i) => {
+        const el = document.getElementById(id);
+        el.className = 'strength-segment';
+        if (i < score) el.classList.add(classes[score]);
+    });
+
+    const txt = document.getElementById('strength-text');
+    txt.textContent = password.length === 0 ? 'Enter a password' : labels[score];
+    txt.style.color = score <= 1 ? '#FF5630' : score === 2 ? '#FFAB00' : '#36B37E';
+}
+
+// ══════════════════════════════════════
+// LIVE EMAIL VALIDATION
+// ══════════════════════════════════════
+function validateEmailLive(input) {
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
+    input.classList.toggle('success', valid && input.value.length > 0);
+    input.classList.toggle('error', !valid && input.value.length > 0);
+}
+
+// ══════════════════════════════════════
+// CHECKBOXES
+// ══════════════════════════════════════
+function toggleTerms() {
+    termsChecked = !termsChecked;
+    const el = document.getElementById('terms-check');
+    el.classList.toggle('checked', termsChecked);
+    el.textContent = termsChecked ? '✓' : '';
+    el.style.color = 'white';
+    el.style.fontSize = '11px';
+}
+
+function toggleRemember() {
+    rememberChecked = !rememberChecked;
+    const el = document.getElementById('remember-check');
+    el.classList.toggle('checked', rememberChecked);
+    el.textContent = rememberChecked ? '✓' : '';
+    el.style.color = 'white';
+    el.style.fontSize = '11px';
+}
+
+// ══════════════════════════════════════
+// SHOW/HIDE ERROR
+// ══════════════════════════════════════
+function showError(id, show) {
+    document.getElementById(id).style.display = show ? 'block' : 'none';
+}
+function setFieldState(id, state) {
+    const el = document.getElementById(id);
+    el.classList.remove('error', 'success');
+    if (state) el.classList.add(state);
+}
+
+// ══════════════════════════════════════
+// SIGN IN
+// ══════════════════════════════════════
+async function handleSignIn(e) {
+    e.preventDefault();
+    const email = document.getElementById('signin-email').value.trim();
+    const password = document.getElementById('signin-password').value;
+    let valid = true;
+
+    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    showError('signin-email-error', !emailValid);
+    setFieldState('signin-email', emailValid ? 'success' : 'error');
+    if (!emailValid) valid = false;
+
+    if (!password) {
+        showError('signin-password-error', true);
+        setFieldState('signin-password', 'error');
+        valid = false;
+    } else {
+        showError('signin-password-error', false);
+        setFieldState('signin-password', 'success');
+    }
+
+    if (!valid) return;
+
+    // Show loading
+    const btn = document.getElementById('signin-btn');
+    const spinner = document.getElementById('signin-spinner');
+    const btnText = document.getElementById('signin-btn-text');
+    btn.classList.add('loading');
+    spinner.style.display = 'block';
+    btnText.textContent = 'Signing in...';
+
+    try {
+        const res = await fetch('http://localhost:8080/api/auth/signin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+        
+        const message = await res.text();
+
+        btn.classList.remove('loading');
+        spinner.style.display = 'none';
+        btnText.textContent = 'Sign In to GlowAI';
+
+        if (res.ok && message === "Login successful") {
+            // Show success and redirect
+            document.getElementById('success-title').textContent = 'Welcome back! 👋';
+            document.getElementById('success-sub').textContent = 'Signed in successfully. Taking you to GlowAI...';
+            document.getElementById('success-overlay').classList.add('show');
+
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2500);
+        } else {
+            alert("Login failed: " + message);
+        }
+    } catch (error) {
+        btn.classList.remove('loading');
+        spinner.style.display = 'none';
+        btnText.textContent = 'Sign In to GlowAI';
+        alert("Error connecting to server. Please try again later.");
+    }
+}
+
+// ══════════════════════════════════════
+// SIGN UP
+// ══════════════════════════════════════
+async function handleSignUp(e) {
+    e.preventDefault();
+    const fname = document.getElementById('signup-fname').value.trim();
+    const lname = document.getElementById('signup-lname').value.trim();
+    const email = document.getElementById('signup-email').value.trim();
+    const password = document.getElementById('signup-password').value;
+    const confirm = document.getElementById('signup-confirm').value;
+    let valid = true;
+
+    if (!fname) { showError('fname-error', true); setFieldState('signup-fname', 'error'); valid = false; }
+    else { showError('fname-error', false); setFieldState('signup-fname', 'success'); }
+
+    if (!lname) { showError('lname-error', true); setFieldState('signup-lname', 'error'); valid = false; }
+    else { showError('lname-error', false); setFieldState('signup-lname', 'success'); }
+
+    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    showError('signup-email-error', !emailValid);
+    setFieldState('signup-email', emailValid ? 'success' : 'error');
+    if (!emailValid) valid = false;
+
+    if (password.length < 8) {
+        showError('signup-password-error', true);
+        setFieldState('signup-password', 'error');
+        valid = false;
+    } else {
+        showError('signup-password-error', false);
+        setFieldState('signup-password', 'success');
+    }
+
+    if (password !== confirm || !confirm) {
+        showError('confirm-error', true);
+        setFieldState('signup-confirm', 'error');
+        valid = false;
+    } else {
+        showError('confirm-error', false);
+        setFieldState('signup-confirm', 'success');
+    }
+
+    if (!termsChecked) {
+        alert('Please agree to the Terms of Service to continue.');
+        valid = false;
+    }
+
+    if (!valid) return;
+
+    // Show loading
+    const btn = document.getElementById('signup-btn');
+    const spinner = document.getElementById('signup-spinner');
+    const btnText = document.getElementById('signup-btn-text');
+    btn.classList.add('loading');
+    spinner.style.display = 'block';
+    btnText.textContent = 'Creating your account...';
+
+    try {
+        const res = await fetch('http://localhost:8080/api/auth/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ firstName: fname, lastName: lname, email, password })
+        });
+        
+        const message = await res.text();
+
+        btn.classList.remove('loading');
+        spinner.style.display = 'none';
+        btnText.textContent = 'Create Free Account';
+
+        if (res.ok && message === "Signup successful") {
+            document.getElementById('success-title').textContent = `Welcome, ${fname}! ✨`;
+            document.getElementById('success-sub').textContent = 'Your GlowAI account is ready. Starting your skin journey...';
+            document.getElementById('success-overlay').classList.add('show');
+
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2500);
+        } else {
+            alert("Signup failed: " + message);
+        }
+    } catch (error) {
+        btn.classList.remove('loading');
+        spinner.style.display = 'none';
+        btnText.textContent = 'Create Free Account';
+        alert("Error connecting to server. Please try again later.");
+    }
+}
+
+// ══════════════════════════════════════
+// SOCIAL LOGIN PLACEHOLDER
+// ══════════════════════════════════════
+function socialLogin(provider) {
+    alert(`${provider} login coming soon! Use email for now.`);
+}
+
+// ══════════════════════════════════════
+// FORGOT PASSWORD
+// ══════════════════════════════════════
+function showForgot() {
+    const email = document.getElementById('signin-email').value;
+    if (email) {
+        alert(`Password reset link will be sent to ${email}`);
+    } else {
+        alert('Please enter your email address first, then click Forgot Password.');
+        document.getElementById('signin-email').focus();
+    }
+}
+
+// ══════════════════════════════════════
+// FLOATING PARTICLES
+// ══════════════════════════════════════
+const container = document.getElementById('particles');
+for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `
+        left: ${Math.random() * 100}%;
+        bottom: ${Math.random() * 20}%;
+        animation-duration: ${4 + Math.random() * 8}s;
+        animation-delay: ${Math.random() * 6}s;
+        width: ${2 + Math.random() * 4}px;
+        height: ${2 + Math.random() * 4}px;
+        opacity: 0;
+        background: ${Math.random() > 0.5 ? '#D4B67A' : '#C5A059'};
+    `;
+    container.appendChild(p);
+}
+</script>
+</body>
+</html>
