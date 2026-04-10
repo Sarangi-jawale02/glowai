@@ -95,9 +95,9 @@
 
     /* NOISE TEXTURE OVERLAY REMOVED */
 
-    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    /* 
    NAVBAR
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+ */
     .navbar {
       position: fixed;
       top: 0;
@@ -164,9 +164,9 @@
       transform: translateY(-1px)
     }
 
-    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    /* 
    HOME PAGE
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+ */
     #home-page {
       background: var(--cream)
     }
@@ -1038,9 +1038,9 @@
       line-height: 1.6
     }
 
-    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    /* 
    ANALYSIS PAGE
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+ */
     #analysis-page {
       background: var(--cream);
       padding-top: 80px
@@ -1417,9 +1417,9 @@
       color: var(--brown)
     }
 
-    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    /* 
    RESULTS PAGE
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+ */
     #results-page {
       background: var(--cream);
       padding-top: 80px
@@ -1699,9 +1699,9 @@
       background: var(--peach)
     }
 
-    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    /* 
    INLINE CHATBOT SECTION
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+ */
     .inline-chat {
       max-width: 900px;
       margin: 0 auto;
@@ -1972,16 +1972,16 @@
   <nav class="navbar">
     <div class="nav-logo">Glow<span>AI</span></div>
     <div class="nav-links">
+      <a class="nav-link" href='login.html'>Login / Sign Up
+</button>
       <a class="nav-link" href="#how-it-works-section">How It Works</a>
       <a class="nav-link" href="#features-section">Features</a>
       <a class="nav-link" href="#chatbot-section">GlowBot</a>
-      <a class="nav-link" href='login.html'>Login / Sign Up
-</button>
       <button class="nav-cta" id="nav-start-btn">Start Analysis</button>
     </div>
   </nav>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• HOME PAGE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <!--  HOME PAGE  -->
   <section id="home-page" class="page active">
 
     <!-- HERO -->
@@ -2223,7 +2223,7 @@
 
   </section>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• ANALYSIS PAGE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <!--  ANALYSIS PAGE  -->
   <section id="analysis-page" class="page">
     <button class="back-btn" id="back-to-home-btn">â† Back to Home</button>
 
@@ -2332,7 +2332,7 @@
     </div>
   </section>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• RESULTS PAGE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <!--  RESULTS PAGE  -->
   <section id="results-page" class="page">
     <button class="back-btn" id="back-to-analysis-btn">â† New Analysis</button>
 
@@ -2432,9 +2432,9 @@
   </section>
 
   <script>
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     // CURSOR
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     const cursor = document.getElementById('cursor');
     const ring = document.getElementById('cursorRing');
     document.addEventListener('mousemove', e => {
@@ -2446,15 +2446,15 @@
     document.addEventListener('mousedown', () => { cursor.style.transform = 'scale(1.8)'; ring.style.transform = 'scale(0.8)' });
     document.addEventListener('mouseup', () => { cursor.style.transform = 'scale(1)'; ring.style.transform = 'scale(1)' });
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     // STATE
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     let uploadedImage = null;
     let analysisResults = null;
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     // PAGE NAVIGATION
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     function showPage(name) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.getElementById(name + '-page').classList.add('active');
@@ -2487,9 +2487,9 @@
       checkValidity();
     }
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     // IMAGE UPLOAD
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     document.getElementById('upload-area').addEventListener('click', () => document.getElementById('image-upload').click());
 
     document.getElementById('image-upload').addEventListener('change', e => {
@@ -2517,9 +2517,9 @@
       checkValidity();
     });
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     // SLIDERS
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     document.getElementById('water-intake').addEventListener('input', e => {
       document.getElementById('water-display').textContent = e.target.value + ' glasses';
     });
@@ -2528,9 +2528,9 @@
       document.getElementById('stress-display').textContent = levels[e.target.value];
     });
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     // FORM VALIDATION
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     function checkValidity() {
       const valid = uploadedImage !== null
         && document.getElementById('age').value >= 13
@@ -2542,9 +2542,9 @@
       document.getElementById(id).addEventListener(id === 'age' ? 'input' : 'change', checkValidity);
     });
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     // FORM SUBMIT
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     document.getElementById('analysis-form').addEventListener('submit', async e => {
       e.preventDefault();
       const formData = {
@@ -2579,9 +2579,9 @@
       }
     });
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     // DISPLAY RESULTS
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     function displayResults(data) {
       document.getElementById('results-image').src = uploadedImage || '';
       document.getElementById('confidence-score').textContent = data.confidence + '%';
@@ -2611,9 +2611,9 @@
       });
     }
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     // ROUTINE TABS
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     function switchTab(tab) {
       document.querySelectorAll('.routine-tab').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.routine-panel').forEach(p => p.classList.remove('active'));
@@ -2621,9 +2621,9 @@
       event.target.classList.add('active');
     }
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     // DOWNLOAD
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     document.getElementById('download-results-btn').addEventListener('click', () => {
       if (!analysisResults) return;
       const r = analysisResults;
@@ -2632,9 +2632,9 @@
       document.body.appendChild(a); a.click(); document.body.removeChild(a);
     });
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     // REAL AI CHATBOT (shared)
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     async function callGlowBot(message) {
       try {
         const res = await fetch('http://localhost:8080/api/chat', {
@@ -2703,26 +2703,26 @@
       addMsg('inline-chat-messages', reply, 'bot');
     }
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     // SCROLL REVEAL
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     // NAVBAR SCROLL
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     window.addEventListener('scroll', () => {
       document.querySelector('.navbar').style.boxShadow = window.scrollY > 20 ? '0 4px 32px rgba(107,76,59,0.1)' : 'none';
     });
 
     console.log('GlowAI loaded ✨');
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
     // NEW EFFECTS
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // 
 
 
     // 2. Skin Card 3D Tilt

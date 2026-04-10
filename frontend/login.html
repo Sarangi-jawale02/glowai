@@ -37,7 +37,7 @@
             overflow-x: hidden;
         }
 
-        /* ─── LEFT PANEL ─── */
+        /*  LEFT PANEL  */
         .left-panel {
             width: 55%;
             background: linear-gradient(135deg, #0A192F 0%, #112240 50%, #0A192F 100%);
@@ -189,11 +189,11 @@
         .card-label { font-size: 11px; color: rgba(255,255,255,0.5); }
         .card-value { font-size: 14px; font-weight: 600; color: white; }
 
-        /* ─── RIGHT PANEL ─── */
+        /*  RIGHT PANEL  */
         .right-panel {
             width: 45%;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
             padding: 60px 40px;
             background: var(--surface);
@@ -400,6 +400,25 @@
         }
         .switch-link:hover { color: var(--text-primary); }
 
+        /* Global Error Box */
+        .global-error {
+            background: rgba(255, 86, 48, 0.1);
+            border: 1px solid rgba(255, 86, 48, 0.3);
+            color: #FF5630;
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+        .global-error.show {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
         /* Success state */
         .success-overlay {
             display: none; position: fixed; inset: 0;
@@ -502,22 +521,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Floating cards -->
-    <div class="floating-card">
-        <div class="card-dot teal">🤖</div>
-        <div class="card-info">
-            <span class="card-label">AI Confidence</span>
-            <span class="card-value">90% Accurate</span>
-        </div>
-    </div>
-    <div class="floating-card floating-card-2">
-        <div class="card-dot pink">🌟</div>
-        <div class="card-info">
-            <span class="card-label">Skin Score</span>
-            <span class="card-value">Analysed ✓</span>
-        </div>
-    </div>
 </div>
 
 <!-- RIGHT PANEL -->
@@ -535,11 +538,17 @@
             <button class="auth-tab" id="tab-signup" onclick="switchTab('signup')">Create Account</button>
         </div>
 
-        <!-- ═══ SIGN IN FORM ═══ -->
+        <!--  SIGN IN FORM  -->
         <div class="form-panel active" id="panel-signin">
             <div class="form-header">
                 <h2 class="form-title">Welcome back 👋</h2>
                 <p class="form-subtitle">Sign in to access your skin analysis history and GlowBot.</p>
+            </div>
+
+            <!-- Global Error -->
+            <div class="global-error" id="signin-global-error">
+                <span class="error-icon">⚠️</span>
+                <span id="signin-global-error-text"></span>
             </div>
 
             <!-- Social -->
@@ -602,11 +611,17 @@
             </div>
         </div>
 
-        <!-- ═══ SIGN UP FORM ═══ -->
+        <!--  SIGN UP FORM  -->
         <div class="form-panel" id="panel-signup">
             <div class="form-header">
                 <h2 class="form-title">Start your glow journey ✨</h2>
                 <p class="form-subtitle">Create your free account and get your first AI skin analysis.</p>
+            </div>
+
+            <!-- Global Error -->
+            <div class="global-error" id="signup-global-error">
+                <span class="error-icon">⚠️</span>
+                <span id="signup-global-error-text"></span>
             </div>
 
             <!-- Social -->
@@ -717,9 +732,9 @@
 </div>
 
 <script>
-// ══════════════════════════════════════
+// 
 // TAB SWITCHING
-// ══════════════════════════════════════
+// 
 let currentTab = 'signin';
 let termsChecked = false;
 let rememberChecked = false;
@@ -727,6 +742,10 @@ let rememberChecked = false;
 function switchTab(tab) {
     currentTab = tab;
     const slider = document.getElementById('tab-slider');
+    
+    // Hide any showing global errors
+    document.getElementById('signin-global-error').classList.remove('show');
+    document.getElementById('signup-global-error').classList.remove('show');
     const signinTab = document.getElementById('tab-signin');
     const signupTab = document.getElementById('tab-signup');
     const signinPanel = document.getElementById('panel-signin');
@@ -747,9 +766,9 @@ function switchTab(tab) {
     }
 }
 
-// ══════════════════════════════════════
+// 
 // PASSWORD TOGGLE
-// ══════════════════════════════════════
+// 
 function togglePassword(id, eyeEl) {
     const input = document.getElementById(id);
     if (input.type === 'password') {
@@ -761,9 +780,9 @@ function togglePassword(id, eyeEl) {
     }
 }
 
-// ══════════════════════════════════════
+// 
 // PASSWORD STRENGTH
-// ══════════════════════════════════════
+// 
 function updateStrength(password) {
     let score = 0;
     if (password.length >= 8) score++;
@@ -786,18 +805,18 @@ function updateStrength(password) {
     txt.style.color = score <= 1 ? '#FF5630' : score === 2 ? '#FFAB00' : '#36B37E';
 }
 
-// ══════════════════════════════════════
+// 
 // LIVE EMAIL VALIDATION
-// ══════════════════════════════════════
+// 
 function validateEmailLive(input) {
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
     input.classList.toggle('success', valid && input.value.length > 0);
     input.classList.toggle('error', !valid && input.value.length > 0);
 }
 
-// ══════════════════════════════════════
+// 
 // CHECKBOXES
-// ══════════════════════════════════════
+// 
 function toggleTerms() {
     termsChecked = !termsChecked;
     const el = document.getElementById('terms-check');
@@ -816,9 +835,9 @@ function toggleRemember() {
     el.style.fontSize = '11px';
 }
 
-// ══════════════════════════════════════
+// 
 // SHOW/HIDE ERROR
-// ══════════════════════════════════════
+// 
 function showError(id, show) {
     document.getElementById(id).style.display = show ? 'block' : 'none';
 }
@@ -828,11 +847,12 @@ function setFieldState(id, state) {
     if (state) el.classList.add(state);
 }
 
-// ══════════════════════════════════════
+// 
 // SIGN IN
-// ══════════════════════════════════════
+// 
 async function handleSignIn(e) {
     e.preventDefault();
+    document.getElementById('signin-global-error').classList.remove('show');
     const email = document.getElementById('signin-email').value.trim();
     const password = document.getElementById('signin-password').value;
     let valid = true;
@@ -884,21 +904,24 @@ async function handleSignIn(e) {
                 window.location.href = 'index.html';
             }, 2500);
         } else {
-            alert("Login failed: " + message);
+            document.getElementById('signin-global-error-text').textContent = message || "Login failed. Please verify your credentials.";
+            document.getElementById('signin-global-error').classList.add('show');
         }
     } catch (error) {
         btn.classList.remove('loading');
         spinner.style.display = 'none';
         btnText.textContent = 'Sign In to GlowAI';
-        alert("Error connecting to server. Please try again later.");
+        document.getElementById('signin-global-error-text').textContent = "Error connecting to server. Please try again later.";
+        document.getElementById('signin-global-error').classList.add('show');
     }
 }
 
-// ══════════════════════════════════════
+// 
 // SIGN UP
-// ══════════════════════════════════════
+// 
 async function handleSignUp(e) {
     e.preventDefault();
+    document.getElementById('signup-global-error').classList.remove('show');
     const fname = document.getElementById('signup-fname').value.trim();
     const lname = document.getElementById('signup-lname').value.trim();
     const email = document.getElementById('signup-email').value.trim();
@@ -936,7 +959,8 @@ async function handleSignUp(e) {
     }
 
     if (!termsChecked) {
-        alert('Please agree to the Terms of Service to continue.');
+        document.getElementById('signup-global-error-text').textContent = "Please agree to the Terms of Service to continue.";
+        document.getElementById('signup-global-error').classList.add('show');
         valid = false;
     }
 
@@ -972,26 +996,28 @@ async function handleSignUp(e) {
                 window.location.href = 'index.html';
             }, 2500);
         } else {
-            alert("Signup failed: " + message);
+            document.getElementById('signup-global-error-text').textContent = message || "Signup failed. Please try again.";
+            document.getElementById('signup-global-error').classList.add('show');
         }
     } catch (error) {
         btn.classList.remove('loading');
         spinner.style.display = 'none';
         btnText.textContent = 'Create Free Account';
-        alert("Error connecting to server. Please try again later.");
+        document.getElementById('signup-global-error-text').textContent = "Error connecting to server. Please try again later.";
+        document.getElementById('signup-global-error').classList.add('show');
     }
 }
 
-// ══════════════════════════════════════
+// 
 // SOCIAL LOGIN PLACEHOLDER
-// ══════════════════════════════════════
+// 
 function socialLogin(provider) {
     alert(`${provider} login coming soon! Use email for now.`);
 }
 
-// ══════════════════════════════════════
+// 
 // FORGOT PASSWORD
-// ══════════════════════════════════════
+// 
 function showForgot() {
     const email = document.getElementById('signin-email').value;
     if (email) {
@@ -1002,9 +1028,9 @@ function showForgot() {
     }
 }
 
-// ══════════════════════════════════════
+// 
 // FLOATING PARTICLES
-// ══════════════════════════════════════
+// 
 const container = document.getElementById('particles');
 for (let i = 0; i < 20; i++) {
     const p = document.createElement('div');
