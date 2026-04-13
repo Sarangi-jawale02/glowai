@@ -1,0 +1,29 @@
+services:
+  # 1. The Spring Boot Backend (Docker)
+  - type: web
+    name: glowai-backend
+    env: docker
+    region: ohio
+    plan: free
+    rootDir: backend/demo
+    envVars:
+      # These will show up as empty fields in the Render dashboard
+      # waiting for you to paste your TiDB credentials securely.
+      - key: DB_URL
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+
+  # 2. The HTML/JS Frontend (Static Site)
+  - type: web
+    name: glowai-frontend
+    env: static
+    region: ohio
+    plan: free
+    rootDir: frontend
+    buildCommand: "" # No build needed for vanilla HTML/JS
+    staticPublishPath: .
