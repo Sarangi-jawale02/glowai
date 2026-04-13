@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -2431,10 +2431,11 @@
     </div>
   </section>
 
+  <script src="config.js"></script>
   <script>
-    // 
+    //                               
     // CURSOR
-    // 
+    //                               
     const cursor = document.getElementById('cursor');
     const ring = document.getElementById('cursorRing');
     document.addEventListener('mousemove', e => {
@@ -2559,7 +2560,7 @@
       document.getElementById('analyze-btn').disabled = true;
       document.getElementById('prog-3').classList.add('done');
       try {
-        const res = await fetch('http://localhost:8080/api/analyze', {
+        const res = await fetch(`${window.API_BASE_URL}/api/analyze`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ image: uploadedImage, ...formData })
@@ -2637,7 +2638,7 @@
     // 
     async function callGlowBot(message) {
       try {
-        const res = await fetch('http://localhost:8080/api/chat', {
+        const res = await fetch(`${window.API_BASE_URL}/api/chat`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message })
