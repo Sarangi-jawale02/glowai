@@ -132,7 +132,7 @@ function showLoadingState(isLoading) {
 // REAL API CALL TO SPRING BOOT BACKEND
 // ============================================
 async function fetchSkinAnalysis(imageData, formData) {
-    const response = await fetch('http://localhost:8080/api/analyze', {
+    const response = await fetch(API_BASE_URL + '/api/analyze', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -334,7 +334,7 @@ function addChatMessage(text, sender) {
 
 async function getBotResponse(message) {
     try {
-        const response = await fetch('http://localhost:8080/api/chat', {
+        const response = await fetch(API_BASE_URL + '/api/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message: message })
@@ -392,5 +392,5 @@ document.addEventListener('DOMContentLoaded', () => {
     showPage('home');
     checkFormValidity();
     console.log('GlowAI loaded successfully! ✅');
-    console.log('Backend expected at: http://localhost:8080/api/analyze');
+    console.log('Backend expected at:', API_BASE_URL);
 });
