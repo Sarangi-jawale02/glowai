@@ -135,6 +135,9 @@ public class GeminiService {
     public String analyzeImage(String base64Image, String age, String skinType,
                                String primaryConcern, String waterIntake,
                                String stressLevel) {
+        if (apiKey == null || apiKey.trim().isEmpty()) {
+            apiKey = "AIzaSyCvpyAf7E-9SePlbTzl1GJGJA5hYJJTehs";
+        }
         try {
             // Remove base64 prefix to get pure data
             String imageData = base64Image.contains(",")
@@ -233,6 +236,9 @@ public class GeminiService {
     }
 
     public String chatResponse(String userMessage) {
+        if (apiKey == null || apiKey.trim().isEmpty()) {
+            apiKey = "AIzaSyCvpyAf7E-9SePlbTzl1GJGJA5hYJJTehs";
+        }
         try {
             String prompt =
                     "You are GlowBot, a friendly and knowledgeable skincare assistant. " +
